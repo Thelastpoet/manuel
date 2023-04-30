@@ -6,6 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 class Manuel_Cron {
     private $version;
+    private $batch_size = 2;
 
     public function __construct( $version ) {
         $this->version = $version;
@@ -27,35 +28,48 @@ class Manuel_Cron {
 
     private function manuel_main() {
         global $wpdb;
-        // Query all the posts from the database
-        $query_args = array(
-            'post_type'      => 'post',
-            'post_status'    => 'publish',
-            'posts_per_page' => -1,
-        );
-        $posts = get_posts( $query_args );
-
-        // For each post, search for broken links and images
-        foreach ( $posts as $post ) {
-            // Get the post content
-            $content = $post->post_content;
-
-            // Replace broken links with '#'
-            $content = $this->replace_broken_links( $content, $post );
-
-            // Remove broken images
-            $content = $this->remove_broken_images( $content, $post );
-
-            // Update the post content and modified date if changes were made
-            if ( $content !== $post->post_content ) {
-                wp_update_post( array(
-                    'ID'            => $post->ID,
-                    'post_content'  => $content,
-                    'post_modified' => current_time( 'mysql' ),
-                ) );
+        $offset = 0;
+    
+        while ( true ) {
+            // Query the posts from the database using the offset and batch size
+            $query_args = array(
+                'post_type'      => 'post',
+                'post_status'    => 'publish',
+                'posts_per_page' => $this->batch_size,
+                'offset'         => $offset,
+            );
+            $posts = get_posts( $query_args );
+    
+            // If there are no more posts, exit the loop
+            if ( empty( $posts ) ) {
+                break;
             }
+    
+            // For each post, search for broken links and images
+            foreach ( $posts as $post ) {
+                // Get the post content
+                $content = $post->post_content;
+    
+                // Replace broken links with '#'
+                $content = $this->replace_broken_links( $content, $post );
+    
+                // Remove broken images
+                $content = $this->remove_broken_images( $content, $post );
+    
+                // Update the post content and modified date if changes were made
+                if ( $content !== $post->post_content ) {
+                    wp_update_post( array(
+                        'ID'            => $post->ID,
+                        'post_content'  => $content,
+                        'post_modified' => current_time( 'mysql' ),
+                    ) );
+                }
+            }
+    
+            // Increment the offset for the next batch
+            $offset += $this->batch_size;
         }
-    }
+    }    
 
     public function manuel_db() {
         global  $wpdb;

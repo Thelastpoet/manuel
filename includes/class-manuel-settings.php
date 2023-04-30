@@ -59,8 +59,7 @@ class Manuel_Settings {
         }
     
         return $this->manuel_cron;
-    }
-    
+    }    
 
     public function register_settings() {
         register_setting( 'manuel_settings', 'manuel_cron_interval' );
@@ -86,7 +85,7 @@ class Manuel_Settings {
         ?>
         <select name="manuel_cron_interval">
             <option value="manuel_five_times_daily" <?php selected( $option, 'manuel_five_times_daily' ); ?>><?php _e( 'Five times daily', 'manuel' ); ?></option>
-            <!-- Add more options if needed -->
+            <!-- we will Add more options if needed -->
         </select>
         <?php
     }
