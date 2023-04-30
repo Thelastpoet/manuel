@@ -79,7 +79,7 @@ class Manuel_Cron {
         // Create the removed links table if it doesn't exist
         if ( $wpdb->get_var( "SHOW TABLES LIKE '$links_table_name'" ) != $links_table_name ) {
             $charset_collate = $wpdb->get_charset_collate();
-            $sql = "CREATE TABLE $table_name (
+            $sql = "CREATE TABLE $links_table_name (
                 id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
                 post_id bigint(20) UNSIGNED NOT NULL,
                 original_link text NOT NULL,

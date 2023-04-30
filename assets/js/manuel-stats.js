@@ -1,3 +1,16 @@
+/**
+
+This JavaScript code is used to handle the click event on the "Edit Link" button.
+
+When the button is clicked, a prompt is displayed asking for a new URL for the broken link.
+
+If the user inputs a new URL, an AJAX call is made to update the post with the new URL.
+
+If the AJAX call is successful, a success message is displayed.
+
+If the AJAX call fails, an error message is displayed.
+*/
+
 jQuery(document).ready(function ($) {
     // Edit link click event.
     $('.edit-link').on('click', function () {
