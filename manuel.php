@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       Manuel
- * Plugin URI:        https://example.com/manuel
+ * Plugin URI:        https://github.com/Thelastpoet/manuel/
  * Description:       A WordPress plugin that searches for and removes broken links and images in WordPress posts, and updates the modified dates of these posts.
  * Version:           1.0.0
  * Author:            Ammanulah Emmanuel
