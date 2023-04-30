@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
+
 class Manuel_Deactivator {
     public static function deactivate() {
         // Unschedule the cron job

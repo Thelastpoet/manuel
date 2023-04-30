@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
+
 function manuel_update_link() {
     // Check the nonce for security
     check_ajax_referer( 'manuel_update_link', 'nonce' );

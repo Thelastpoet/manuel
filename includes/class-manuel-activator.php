@@ -1,5 +1,9 @@
 <?php
 
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
+
 require_once MANUEL_PLUGIN_DIR . '/includes/class-manuel-cron.php';
 
 class Manuel_Activator {

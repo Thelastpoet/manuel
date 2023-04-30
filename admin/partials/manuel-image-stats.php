@@ -1,4 +1,9 @@
 <?php
+
+if ( ! defined( 'ABSPATH' ) ) {
+    exit; // Exit if accessed directly.
+}
+
 // Fetch statistics from the database.
 $manuel_settings = new Manuel_Settings( '1.0' );
 $removed_images = $manuel_settings->get_manuel_cron()->get_images_stats();
