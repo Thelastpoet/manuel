@@ -201,7 +201,6 @@ class Manuel_Cron {
     private function is_valid_url( $url ) {
         // Check if the URL is valid
         if ( empty( $url ) ) {
-            error_log( 'Error: Empty URL' );
             return false;
         }
     
