@@ -1,10 +1,12 @@
 <?php
 
+namespace Manuel;
+
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
-class Manuel_Cron {
+class Manuel_Mwene {
     private $version;
     private $batch_size = 2;
 
@@ -87,6 +89,9 @@ class Manuel_Cron {
                 time_removed datetime NOT NULL,
                 PRIMARY KEY (id)
             )   $charset_collate;";
+
+            require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+            dbDelta( $sql );
         }
 
         // Create the removed images table if it doesn't exist
@@ -138,8 +143,10 @@ class Manuel_Cron {
         $table_name = $wpdb->prefix . 'manuel_removed_links';
     
         // Find and replace broken links
-        $dom = new DOMDocument();
-        @$dom->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ) );
+        $dom = new \DOMDocument();
+        if (!empty($content)) {
+            @$dom->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ) );
+        }
     
         $links = $dom->getElementsByTagName( 'a' );
         foreach ( $links as $link ) {
@@ -176,8 +183,10 @@ class Manuel_Cron {
         $table_name = $wpdb->prefix . 'manuel_removed_images';
 
         // Find and remove broken images
-        $dom = new DOMDocument();
-        @$dom->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ) );
+        $dom = new \DOMDocument();
+        if (!empty($content)) {
+            @$dom->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ) );
+        }
 
         $images = $dom->getElementsByTagName( 'img' );
         foreach ( $images as $image ) {

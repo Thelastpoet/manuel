@@ -3,7 +3,7 @@
 ![Version](https://img.shields.io/badge/version-1.0.0-blue)
 ![License](https://img.shields.io/badge/license-GPL--2.0%2B-green)
 
-Manuel is a WordPress plugin that searches for and removes broken links and images in WordPress posts, and updates the modified dates of these posts.
+Manuel is a WordPress plugin that searches and removes broken links and images in WordPress posts, and updates the modified dates of these posts.
 
 ## Features
 

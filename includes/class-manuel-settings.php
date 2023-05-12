@@ -1,5 +1,7 @@
 <?php
 
+namespace Manuel;
+
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
@@ -13,11 +15,12 @@ class Manuel_Settings {
 
     public function add_settings_page() {
         add_menu_page(
-            __( 'Manuel Settings', 'manuel' ),
-            __( 'Manuel Settings', 'manuel' ),
+            __( 'Manuel', 'manuel' ),
+            __( 'Manuel', 'manuel' ),
             'manage_options',
             'manuel-settings',
-            array( $this, 'display_settings_page' )
+            array( $this, 'display_settings_page' ),
+            'dashicons-images-alt2'
         );
 
         add_submenu_page(
@@ -45,7 +48,7 @@ class Manuel_Settings {
     }
 
     public function display_stats_page() {
-        include_once MANUEL_PLUGIN_DIR . 'admin/partials/manuel-stats.php';
+        include_once MANUEL_PLUGIN_DIR . 'admin/partials/manuel-links-stats.php';
     }
 
     public function display_image_stats_page() {
@@ -54,15 +57,23 @@ class Manuel_Settings {
     
     public function get_manuel_cron() {
         if ( ! isset( $this->manuel_cron ) ) {
-            require_once MANUEL_PLUGIN_DIR . 'includes/class-manuel-cron.php';
-            $this->manuel_cron = new Manuel_Cron( $this->version );
+            require_once MANUEL_PLUGIN_DIR . 'includes/class-manuel-mwene.php';
+            $this->manuel_cron = new Manuel_Mwene( $this->version );
         }
     
         return $this->manuel_cron;
     }    
 
     public function register_settings() {
-        register_setting( 'manuel_settings', 'manuel_cron_interval' );
+        register_setting( 
+            'manuel_settings',
+            'manuel_cron_interval',
+            array(
+                'type' => 'string',
+                'sanitize_callback' => array( $this, 'sanitize_cron_interval'),
+                'default' => 'manuel_five_times_daily',
+            ) 
+        );
 
         add_settings_section(
             'manuel_cron_settings_section',
@@ -78,6 +89,18 @@ class Manuel_Settings {
             'manuel-settings',
             'manuel_cron_settings_section'
         );
+    }
+
+    public function sanitize_cron_interval($input) {
+        $valid = array(
+            'manuel_five_times_daily',
+        );
+    
+        if (in_array($input, $valid, true)) {
+            return $input;
+        }
+    
+        return 'manuel_five_times_daily';
     }
 
     public function render_cron_interval_field() {

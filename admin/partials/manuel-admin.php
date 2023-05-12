@@ -1,4 +1,7 @@
 <?php
+
+namespace Manuel;
+
 // Check if the user has the necessary permissions
 if ( ! current_user_can( 'manage_options' ) ) {
     return;

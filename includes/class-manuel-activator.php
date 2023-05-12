@@ -1,10 +1,12 @@
 <?php
 
+namespace Manuel;
+
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
-require_once MANUEL_PLUGIN_DIR . '/includes/class-manuel-cron.php';
+require_once MANUEL_PLUGIN_DIR . '/includes/class-manuel-mwene.php';
 
 class Manuel_Activator {
     public static function activate( $version ) {
@@ -19,7 +21,7 @@ class Manuel_Activator {
         wp_schedule_event( time(), $cron_interval, 'manuel_cron_event' );
 
         // Create Manuel db table here
-        $manuel_cron = new Manuel_Cron( $version );
+        $manuel_cron = new Manuel_Mwene( $version );
         $manuel_cron->manuel_db();
     }
     

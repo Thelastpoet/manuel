@@ -1,5 +1,7 @@
 <?php
 
+namespace Manuel;
+
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
@@ -27,7 +29,7 @@ class Manuel {
             require_once MANUEL_PLUGIN_DIR . '/includes/functions.php';
         }
 
-        $cron = new Manuel_Cron( $this->version );
+        $cron = new Manuel_Mwene( $this->version );
         add_action( 'manuel_cron_event', array( $cron, 'run_cron' ) );
         add_filter( 'cron_schedules', array( $cron, 'add_custom_cron_intervals' ) );
     }
