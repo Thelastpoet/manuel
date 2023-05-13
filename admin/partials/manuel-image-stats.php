@@ -63,16 +63,14 @@ class Manuel_Image_Stats extends \WP_List_Table
         }
     }
 
-    public function column_title($item) {
-        $title = '<strong>' . esc_html($item->post_title) . '</strong>';
-
+    public function column_post_title($item) {
         $actions = [
-            'edit'      => sprintf('<a href="%s">%s</a>', get_edit_post_link($item->ID), __('Edit', 'manuel')),
-            'trash'     => sprintf('<a href="%s">%s</a>', get_delete_post_link($item->ID), __('Trash', 'manuel')),
-            'view'      => sprintf('<a href="%s">%s</a>', get_permalink($item->ID), __('View', 'manuel'))
+            'edit'      => sprintf('<a href="%s">%s</a>', get_edit_post_link($item['post_id']), __('Edit', 'manuel')),
+            'trash'     => sprintf('<a href="%s">%s</a>', get_delete_post_link($item['post_id']), __('Trash', 'manuel')),
+            'view'      => sprintf('<a href="%s">%s</a>', get_permalink($item['post_id']), __('View', 'manuel'))
         ];
 
-        return $title . $this->row_actions($actions);
+        return sprintf('%1$s %2$s', $item['post_title'], $this->row_actions($actions));
     }
 
     public function column_cb($item) {
