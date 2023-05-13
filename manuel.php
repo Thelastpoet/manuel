@@ -29,7 +29,7 @@ require_once MANUEL_PLUGIN_DIR . 'includes/class-manuel.php';
 require_once MANUEL_PLUGIN_DIR . 'includes/class-manuel-activator.php';
 require_once MANUEL_PLUGIN_DIR . 'includes/class-manuel-deactivator.php';
 require_once MANUEL_PLUGIN_DIR . 'includes/class-manuel-mwene.php';
-require_once MANUEL_PLUGIN_DIR . 'includes/class-manuel-settings.php';
+require_once MANUEL_PLUGIN_DIR . 'admin/manuel-settings.php';
 
 // Register activation and uninstall hooks.
 register_activation_hook( __FILE__, [ __NAMESPACE__ . '\Manuel_Activator', 'activate' ]);

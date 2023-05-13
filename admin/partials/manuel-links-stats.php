@@ -22,7 +22,7 @@ class Manuel_Links_Stats extends \WP_List_Table {
 
     public function get_columns() {
         return [
-            'cb'           => '<input type="checkbox" />', // Render a checkbox.
+            'cb'           => '<input type="checkbox" />',
             'post_title'   => __('Post Title', 'manuel'),
             'original_link' => __('Original Link', 'manuel'),
             'anchor_text'  => __('Anchor Text', 'manuel'),

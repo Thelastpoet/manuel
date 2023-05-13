@@ -21,7 +21,7 @@ class Manuel_Mwene {
 
     public function add_custom_cron_intervals( $schedules ) {
         $schedules['manuel_five_times_daily'] = array(
-            'interval' => 86400 / 5,
+            'interval' => 86400 / 4,
             'display'  => __( 'Five times daily', 'manuel' ),
         );
 
