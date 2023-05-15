@@ -58,12 +58,11 @@ class Manuel_Mwene {
                 // Remove broken images
                 $content = $this->remove_broken_images( $content, $post );
     
-                // Update the post content and modified date if changes were made
+                // Update the post content if changes were made
                 if ( $content !== $post->post_content ) {
                     wp_update_post( array(
                         'ID'            => $post->ID,
                         'post_content'  => $content,
-                        'post_modified' => current_time( 'mysql' ),
                     ) );
                 }
             }

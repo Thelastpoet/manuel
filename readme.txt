@@ -1,6 +1,6 @@
 === Manuel ===
 Contributors: smartkenyan
-Donate link: https://nabaleka.com/donate/
+Donate link: https://nabaleka.com/
 Tags: broken links, broken images, links, images, posts
 Requires at least: 5.8
 Tested up to: 6.2

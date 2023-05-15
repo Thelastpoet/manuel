@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Manuel
  * Plugin URI:        https://github.com/Thelastpoet/manuel/
- * Description:       A WordPress plugin that searches for and removes broken links and images in WordPress posts, and updates the modified dates of these posts.
+ * Description:       A WordPress plugin that searches and removes broken links and images in WordPress posts, and updates the modified dates of these posts.
  * Version:           1.0.0
  * Author:            Ammanulah Emmanuel
  * Author URI:        https://nabaleka.com
@@ -14,17 +14,15 @@
 
 namespace Manuel;
 
-// Prevent direct access.
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
-// Define constants.
+// Manuel constants
 define( 'MANUEL_VERSION', '1.0.0' );
 define( 'MANUEL_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'MANUEL_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
-// Include files.
 require_once MANUEL_PLUGIN_DIR . 'includes/class-manuel.php';
 require_once MANUEL_PLUGIN_DIR . 'includes/class-manuel-activator.php';
 require_once MANUEL_PLUGIN_DIR . 'includes/class-manuel-deactivator.php';
