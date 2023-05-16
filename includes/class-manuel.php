@@ -18,7 +18,7 @@ class Manuel {
         load_plugin_textdomain( 'manuel', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
     }
 
-    private function define_admin_hooks() {
+    private function manuel_admin_hooks() {
         if ( is_admin() ) {
             $settings = new Manuel_Settings( $this->version );
             add_action( 'admin_menu', array( $settings, 'add_settings_page' ) );
@@ -35,6 +35,6 @@ class Manuel {
     }
 
     public function run() {
-        $this->define_admin_hooks();
+        $this->manuel_admin_hooks();
     }
 }
