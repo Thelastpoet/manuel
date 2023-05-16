@@ -52,8 +52,8 @@ class Manuel_Mwene {
                 // Get the post content
                 $content = $post->post_content;
     
-                // Replace broken links with '#'
-                $content = $this->replace_broken_links( $content, $post );
+                // Remove broken links
+                $content = $this->remove_broken_links( $content, $post );
     
                 // Remove broken images
                 $content = $this->remove_broken_images( $content, $post );
@@ -137,11 +137,11 @@ class Manuel_Mwene {
         return $results;
     }
 
-    private function replace_broken_links( $content, $post ) {
+    private function remove_broken_links( $content, $post ) {
         global $wpdb;
         $table_name = $wpdb->prefix . 'manuel_removed_links';
     
-        // Find and replace broken links
+        // Find and remove broken links
         $dom = new \DOMDocument();
         if (!empty($content)) {
             @$dom->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ) );
