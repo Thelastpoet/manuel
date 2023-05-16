@@ -9,7 +9,6 @@ Manuel is a WordPress plugin that searches and removes broken links and images i
 
 - Searches for broken links and images in WordPress posts
 - Removes broken links and images
-- Updates the modified dates of affected posts
 - Provides an admin interface for viewing removed links and images
 
 ## Installation

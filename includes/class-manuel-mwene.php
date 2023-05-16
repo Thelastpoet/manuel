@@ -154,7 +154,7 @@ class Manuel_Mwene {
                 $anchor_text = $link->nodeValue;
                 $time_removed = current_time( 'mysql' );
     
-                // Check if the broken link record exists in the database
+                // Check if the broken link record is in the database
                 $broken_link = $wpdb->get_row( $wpdb->prepare(
                     "SELECT * FROM {$table_name} WHERE post_id = %d AND original_link = %s AND anchor_text = %s", $post->ID, $href, $anchor_text ) );
     

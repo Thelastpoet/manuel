@@ -33,6 +33,6 @@ require_once MANUEL_PLUGIN_DIR . 'admin/manuel-settings.php';
 register_activation_hook( __FILE__, [ __NAMESPACE__ . '\Manuel_Activator', 'activate' ]);
 register_uninstall_hook( __FILE__, [ __NAMESPACE__ . '\Manuel_Deactivator', 'deactivate' ]);
 
-// Initialize the plugin.
+// Initialize the Manuel.
 $manuel = new Manuel();
 $manuel->run();

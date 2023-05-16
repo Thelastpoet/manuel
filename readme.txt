@@ -8,7 +8,7 @@ Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Manuel is a WordPress plugin that searches and removes broken links and images in WordPress posts, and updates the modified dates of these posts.
+Manuel is a WordPress plugin that searches and removes broken links and images in WordPress posts.
 
 == Description ==
 
