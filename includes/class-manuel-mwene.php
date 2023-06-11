@@ -62,7 +62,7 @@ class Manuel_Mwene {
                 $content = $this->remove_broken_images( $content, $post );
 
                 // Remove broken featured image
-                $this->remove_broken_featured_image( $post );
+                $this->remove_bkf_images( $post );
     
                 // Update the post content if changes were made
                 if ( $content !== $post->post_content ) {
