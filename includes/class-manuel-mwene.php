@@ -216,22 +216,26 @@ class Manuel_Mwene {
     private function remove_bkf_images( $post ) {
         global $wpdb;
         $table_name = $wpdb->prefix . 'manuel_removed_images';
-
+    
         $featured_image_id = get_post_thumbnail_id( $post->ID );
-        $featured_image_url = wp_get_attachment_url( $featured_image_id );
-
-        if ( ! $this->is_valid_url( $featured_image_url ) ) {
-            // Delete the post thumbnail link
-            delete_post_thumbnail( $post->ID );
-
-            // Insert the removed image details into the db
-            $wpdb->insert($table_name, array(
-                'post_id' => $post->ID,
-                'original_image' => $featured_image_url,
-                'time_removed' => current_time( 'mysql' ),
-            ));
+    
+        // Check if the post has a featured image before trying to get its URL and remove it
+        if ( $featured_image_id ) {
+            $featured_image_url = wp_get_attachment_url( $featured_image_id );
+    
+            if ( ! $this->is_valid_url( $featured_image_url ) ) {
+                // Delete the post thumbnail link
+                delete_post_thumbnail( $post->ID );
+    
+                // Insert the removed image details into the db
+                $wpdb->insert($table_name, array(
+                    'post_id' => $post->ID,
+                    'original_image' => $featured_image_url,
+                    'time_removed' => current_time( 'mysql' ),
+                ));
+            }
         }
-    }
+    }   
 
     private function is_valid_url( $url ) {
         // Chek if the URL is well formed
