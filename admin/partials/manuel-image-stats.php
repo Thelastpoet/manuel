@@ -116,7 +116,7 @@ $ImagesTable = new Manuel_Image_Stats();
 <div class="wrap">
     <h1><?php esc_html_e( 'Removed Images List', 'manuel' ); ?></h1>
     <form id="posts-filter" method="get">
-        <input type="hidden" name="page" value="<?php echo $_REQUEST['page'] ?>" />
+        <input type="hidden" name="page" value="<?php echo esc_attr($_REQUEST['page']) ?>" />
         <?php
         $ImagesTable->display();
         ?>
