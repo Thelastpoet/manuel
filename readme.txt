@@ -3,7 +3,7 @@ Contributors: smartkenyan
 Donate link: https://nabaleka.com/
 Tags: broken links, broken images, links, images, posts
 Requires at least: 5.8
-Tested up to: 6.2
+Tested up to: 6.3
 Stable tag: 1.0.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -38,8 +38,3 @@ You can view the removed links and images by navigating to the plugin's admin in
 
 = 1.0.0 =
 * Initial release
-
-== Upgrade Notice ==
-
-= 1.0.0 =
-Initial release
