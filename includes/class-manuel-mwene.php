@@ -238,46 +238,34 @@ class Manuel_Mwene {
     }   
 
     private function is_valid_url( $url ) {
-        // Chek if the URL is well formed
+        // Check if the URL is well formed
         if ( filter_var( $url, FILTER_VALIDATE_URL ) === false ) {
             return false;
         }
-
+    
         // Check if the URL is valid
         if ( empty( $url ) ) {
             return false;
         }
     
-        // Initialize curl
-        $ch = curl_init( $url );
-
-        // Set options
-        curl_setopt( $ch, CURLOPT_NOBODY, true );
-        curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, true );
-        curl_setopt( $ch, CURLOPT_TIMEOUT, 5 );
-        curl_setopt( $ch, CURLOPT_USERAGENT, $this->user_agent );
-
-        // Execute
-        if ( !curl_exec( $ch )) {
-            // Close the cURL resource
-            curl_close( $ch );
-        
-            // If cURL operation fails, return false
+        $response = wp_remote_head( $url, array( 
+            'timeout'     => 5, 
+            'redirection' => 5, 
+            'httpversion' => '1.1',
+            'user-agent'  => $this->user_agent,
+        ) );
+    
+        if ( is_wp_error( $response ) ) {
             return false;
         }
-
-        // Get the HTTP Response Code
-        $httpCode = curl_getinfo( $ch, CURLINFO_HTTP_CODE );
-
-        // Close the cURL resource
-        curl_close( $ch );
-
-        // Check if hte HTTP response code is successful
+    
+        $httpCode = wp_remote_retrieve_response_code( $response );
+    
+        // Check if the HTTP response code is successful
         if ( $httpCode >= 200 && $httpCode < 300 ) {
             return true;
         }
-
-        return false;
-    }
     
+        return false;
+    }    
 }
